@@ -107,14 +107,14 @@ function checkForDuplicates(message){
 
 
 
-app.post('/userlogin',function(request,response){
-	var query1=request.body.input_username;
-	console.log(query1)
+// app.post('/userlogin',function(request,response){
+// 	var query1=request.body.input_username;
+// 	console.log(query1)
 
 
-	// SEND MAP
-	response.send("ok")
-});
+// 	// SEND MAP
+// 	response.send("ok")
+// });
 
 
 module.exports = app;
