@@ -8,14 +8,14 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var users = require('./routes/users');
 
-
-
-var currentUsersArray = []
-
+var port = process.env.port || 3000;
 
 var app = express();
 
-var server = app.listen(3000);
+var server = require('http').createServer(app);
+server.listen(port, function(){
+	console.log('Server listening on port ' + port);
+});
 
 var http = require('http').Server(app);
 
@@ -36,6 +36,8 @@ app.use('/', index);
 app.use('/users', users);
 
 
+
+var currentUsersArray = [];
 
 // error handler
 app.use(function(err, req, res, next) {
@@ -85,8 +87,6 @@ function checkForDuplicates(message){
 
 
 
-
-
 // WRITE HERE >:D
 
 
@@ -99,14 +99,6 @@ app.post('/userlogin',function(request,response){
 	// SEND MAP
 	response.send("ok")
 });
-
-
-
-
-// app.listen(3000, function () {
-//   console.log('Example app listening on port 3000!')
-// });
-
 
 
 module.exports = app;
