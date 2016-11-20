@@ -68,6 +68,8 @@ io.on('connect', function(socket){
 			}
 		}
 
+		io.emit('loggedIn',currentUsersArray);
+
 		console.log(message.latitude+ " "+ message.longitude+" for " + message.username)
 	})
 

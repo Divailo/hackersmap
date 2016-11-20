@@ -2,21 +2,36 @@
 var oxfordPosition = [];
 var socket;
 
-var username;
+var _username = "Damyan";
 var user;
 var pos;
 
 $( document ).ready(function() {
   getLocation();
-  initMap();
   initSocket();
+
+  // Emit the current position
+  user = { username:_username,
+           latitude:oxfordPosition[1],
+           longitude:oxfordPosition[0]
+          }
+
+  socket.emit('login', user);
+  _username = user.username;
+  setInterval(function() {
+    socket.emit('update', { username:_username,
+           latitude:oxfordPosition[1],
+           longitude:oxfordPosition[0]
+          })
+  }, 1000);
+
+  initMap();
 });
 
 // Initiate the socket
 function initSocket(){
   socket = io();
   socket.on('loggedIn', function (currentUsersArray){
-
     console.log(currentUsersArray);
     // DO 
   })
@@ -29,7 +44,7 @@ function initSocket(){
 
   })
   
-  navigator.geolocation.getCurrentPosition(showPosition);
+  // navigator.geolocation.getCurrentPosition(showPosition);
 }
 
 // Initiate the map
