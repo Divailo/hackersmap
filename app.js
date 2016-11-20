@@ -78,7 +78,7 @@ io.on('connect', function(socket){
 		io.emit('new_message_received', message);
 	})
 
-	//disconnect handler
+	//disconnect handler, zaebi za sega
 	socket.on('disconnect', function(message){
     	console.log('user disconnected');
 

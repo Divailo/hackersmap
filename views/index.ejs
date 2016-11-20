@@ -8,7 +8,19 @@
   		// var username;
   		var socket;
   		var user;
-  		var pos; 
+  		var pos;
+
+
+  			//da pra6ta6
+		// socket.emit('login', user) -> user = json of name, lat, lon; kogato si klient i wliza6 w servera
+		// socket.emit('send_new_message', jsonMsg) -> jsonMsg = json of name, content; kogato si klient i pra6ta6 msg
+		// socket.emit('update', user) -> user = json of name, lat, lon; update na location-a, de fakto sy6toto kato login :S
+
+			//da polu4awa6
+		//socke.on('loggedIn', users) -> users = array of users with nicknames/coordinates; nqkoi e wleznal w server-a
+		//socket.on('new_message_received', messsage > message = json of name, content; kogato nqkoi izprati syob6tenie
+
+
   		function t(){
 
   			socket = io()
@@ -17,9 +29,18 @@
 	  			console.log(currentUsersArray)
 	  			// DO 
 	  		})
+
+	  		//when the client receives event of a new message
+	  		socket.on('new_message_received', function(newMessage){
+
+	  			console.log('new message received')
+	  			//display somewhere
+
+	  		})
   			
   			navigator.geolocation.getCurrentPosition(showPosition);
   		}
+
 		function showPosition(position){
 			console.log(position.coords.latitude + " " + position.coords.longitude)
 			lat = position.coords.latitude
