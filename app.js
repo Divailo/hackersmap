@@ -39,7 +39,7 @@ app.use('/users', users);
 
 var currentUsersArray = [];
 
-var messageHistory = [];
+// var messageHistory = [];
 
 // error handler
 app.use(function(err, req, res, next) {
@@ -76,7 +76,7 @@ io.on('connect', function(socket){
 	//new chat message
 	socket.on('send_new_message', function(message){
 		console.log('client sent a message');
-		messageHistory.push(message);
+		// messageHistory.push(message);
 		io.emit('new_message_received', message);
 	})
 

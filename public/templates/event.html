@@ -8,41 +8,25 @@
       <div id="recepient">
         Rosen Dangov
       </div>
-      <ul>
-        <li class="message mineMessage">
-          <span>Asdf</span>
-        </li>
-        <li class="message mineMessage">
-          <span>Novo saobshtenie</span>
-        </li>
-        <li class="message otherMessage">
-          <span>Trallaa</span>
-        </li>
-        <li class="message otherMessage">
-          <span>Hate js</span>
-        </li>
-        <li class="message mineMessage">
-          <span>Iohohoho</span>
-        </li>
-        <li class="message mineMessage">
-          <span>Asdf</span>
-        </li>
-        <li class="message mineMessage">
-          <span>Novo saobshtenie</span>
-        </li>
-        <li class="message otherMessage">
-          <span>Trallaa</span>
-        </li>
-        <li class="message otherMessage">
-          <span>Hate js</span>
-        </li>
-        <li class="message mineMessage">
-          <span>Iohohoho</span>
-        </li>
+      <ul id="chat_container">
       </ul>
       <form>
-        <input type="text" name="sendValue">
+        <input type="text" id="m" name="sendValue">
         <button id="sendMessage">send</button>
+        <script type="text/javascript">
+           $('#sendMessage').click(function(event) {
+            console.log("asdasd");
+            // if($('#m').val() !== '' || $('#m').val() !== undefined){
+            var msg = { username:_username,
+                         content:$('#m').val()
+                      }
+              socket.emit('send_new_message', msg);
+            // }
+            $('#m').val('');
+ 
+ 
+          });
+        </script>
       </form>
     </div>
   </div>

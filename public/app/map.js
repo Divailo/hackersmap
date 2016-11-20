@@ -34,6 +34,35 @@ $( document ).ready(function() {
       });
   }, 1000);
 
+      //when the client receives event of a new message
+  socket.on('new_message_received', function(newMessage){
+ 
+  console.log(newMessage);
+  console.log('new message received' + newMessage);
+  //display somewhere
+  var ul = document.getElementById("chat_container");
+  var li = document.createElement("li");
+  var span = document.createElement("span");
+ 
+  if(newMessage.username === _username){
+    //message.content "message mineMessage"
+    li.setAttribute("class","message mineMessage");
+ 
+  } else{
+    //"message otherMessage"
+      li.setAttribute("class","message otherMessage");
+ 
+  }
+ 
+  span.appendChild(document.createTextNode(newMessage.content));
+  li.appendChild(span);
+  ul.appendChild(li);
+   var wtf    = $('#chat_container');
+  var height = wtf[0].scrollHeight;
+  wtf.scrollTop(height);
+ 
+  })
+
 });
 
 // Initiate the socket
