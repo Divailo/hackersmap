@@ -1,0 +1,216 @@
+@font-face {
+    font-family: 'HarryPotter';
+    src: url(../fonts/hp.ttf) format("opentype");
+}
+
+* {
+	box-sizing: border-box;
+	font-family: 'HarryPotter' !important/*, 'Ubuntu', sans-serif !important*/;
+}
+
+body {
+	background: url('../images/bg_p2.jpg') center fixed;
+}
+
+.topBorder {
+	height: 10px;
+	/*background: url('../images/bg.png') #ffffff center repeat fixed;*/
+}
+
+#bodyContainer {
+	padding: 0;
+	/*background: #fff;*/
+
+}
+
+#mainContent {
+	min-height: 200px;
+}
+
+#logo {
+	padding: 0;
+}
+
+#logo a {
+	height: 40px;
+	margin: 15px 0 0 0;
+	/*border: 1px solid #ffffff;*/
+	color: #ffffff;
+	font-weight: bold;
+	font-size: 2.2em;
+	display: block;
+	width: 190px;
+	line-height: 40px;
+	text-align: center;
+	transition: all 0.2s;
+}
+
+#logo a:hover {
+	background: none;
+	color: #ffffff;
+	text-shadow: 0 0 6px rgba(255,255,255,80);
+	background: none;
+	text-decoration: none;
+}
+
+#bodyHeader {
+	min-height: 70px;
+	border-bottom: 1px solid #ffffff;
+}
+
+.navHeaderCollapse ul {
+	margin-right: 0;
+}
+
+.navHeaderCollapse li{
+	height: 60px;
+}
+
+.navHeaderCollapse li a {
+	display: block;
+	height: 40px;
+	margin: 15px 5px;
+	padding: 0;
+	background: none;
+}
+.navHeaderCollapse li a:hover {
+	background: none;
+}
+
+.navHeaderCollapse li a button {
+	height: 40px;
+	background: none;
+	width: 100%;
+	margin: 0;
+	padding: 0 10px;
+	outline: none;
+	/*border: 1px solid rgba(255,255,255,30);*/
+	border: none;
+	transition: all 0.2s;
+	font-size: 1.3em;
+	/*background: #fff;*/
+	color: #ffffff;
+	text-transform: uppercase;
+}
+
+.navHeaderCollapse li a button:hover {
+	text-shadow: 0 0 6px rgba(255,255,255,80);
+	background: none;
+}
+
+#navToggle {
+	position: absolute;
+	right: 0;
+	margin: 0;
+	top: 15px;
+	height: 40px;
+}
+
+#navToggle .icon-bar {
+	background: #ffffff;
+}
+
+
+#bodyContainer > .mainFooter {
+	/*border-top: 1px solid #ffffff;*/
+	padding: 5px;
+	text-align: center;
+	color: #ffffff;
+	margin-top: 40px;
+	height: 40px;
+}
+
+.transitionFast {
+	transition: all 0.2s;
+}
+
+.title {
+	font-size: 2.6em;
+	color: #ffffff;
+	margin: 20px 0 15px 0;
+	text-shadow: 0 0 10px rgba(0,0,0,200);
+}
+
+.freeTxt {
+	color: #ccc;
+	font-size: 1.4em;
+	line-height: 24px !important;
+	margin: 0 0 35px 0;
+}
+
+.fullWidth {
+	width: 100%;
+}
+
+.fancyButtonWhite {
+	border: 1px solid #ffffff;
+	padding: 10px;
+	text-align: center;
+	/*background: #ffffff;*/
+	color: #ffffff;
+	outline: none;
+}
+
+.fancyButtonWhite:hover {
+	/*background: #ffffff;*/
+	color: #ffffff;
+}
+
+.fancyButtonBlue {
+	border: 1px solid #ffffff;
+	padding: 10px;
+	text-align: center;
+	background: #ffffff;
+	color: #ffffff;
+	outline: none;
+}
+
+.fancyButtonBlue:hover {
+	background: #ffffff;
+	color: #ffffff;
+}
+
+.fancyButtonGrey {
+	border: 1px solid #212121;
+	padding: 10px;
+	text-align: center;
+	background: #212121;
+	color: #ffffff;
+	outline: none;
+}
+
+.fancyButtonGrey:hover {
+	background: #ffffff;
+	color: #212121;
+	border: 1px solid #212121;
+}
+
+.unselectable {
+    -moz-user-select: none; 
+    -khtml-user-select: none; 
+    -webkit-user-select: none; 
+    -o-user-select: none;
+}
+
+@media (max-width: 768px) {
+	#logo {
+		position: absolute;
+		left:0;
+	}
+	.navHeaderCollapse {
+		padding: 0;
+	}
+	.navHeaderCollapse ul {
+		width: 100%;
+		margin: 80px 0 30px 0;
+		padding: 0;
+	}
+	.navHeaderCollapse ul li {
+		margin: 5px 0;
+		height: auto;
+	}
+	.navHeaderCollapse ul a {
+		margin: 0;
+		padding: 0;
+	}
+}

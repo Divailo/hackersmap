@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<script src="/socket.io/socket.io.js"></script>
+  	<script src="//code.jquery.com/jquery-3.1.1.js"></script>
+  	<script type="text/javascript">
+
+  		var username;
+
+  		var socket;
+  		var user;
+  		var pos;
+
+
+  			//da pra6ta6
+		// socket.emit('login', user) -> user = json of name, lat, lon; kogato si klient i wliza6 w servera
+		// socket.emit('send_new_message', jsonMsg) -> jsonMsg = json of name, content; kogato si klient i pra6ta6 msg
+		// socket.emit('update', user) -> user = json of name, lat, lon; update na location-a, de fakto sy6toto kato login :S
+
+			//da polu4awa6
+		//socke.on('loggedIn', users) -> users = array of users with nicknames/coordinates; nqkoi e wleznal w server-a
+		//socket.on('new_message_received', messsage > message = json of name, content; kogato nqkoi izprati syob6tenie
+
+
+  		function t(){
+
+  			socket = io();
+	  		socket.on('loggedIn', function (currentUsersArray){
+
+	  			console.log(currentUsersArray);
+	  			// DO 
+	  		})
+
+	  		//when the client receives event of a new message
+	  		socket.on('new_message_received', function(newMessage){
+
+	  			console.log('new message received');
+	  			//display somewhere
+
+	  		})
+  			
+  			navigator.geolocation.getCurrentPosition(showPosition);
+  		}
+
+		function showPosition(position){
+			console.log(position.coords.latitude + " " + position.coords.longitude);
+			lat = position.coords.latitude;
+			lon = position.coords.longitude;
+
+			user = { username:$('#username').val(),
+			 		 latitude:lat,
+			 		 longitude:lon
+			 		}
+
+			socket.emit('login', user);
+			username = user.username;
+  			setInterval(updatePos, 1000);
+			
+		}
+
+		function updatePos(){
+
+			navigator.geolocation.getCurrentPosition(showPosition1);
+
+
+
+		}
+
+		function showPosition1(position){
+			user.latitude = position.coords.latitude;
+			user.longitude = position.coords.longitude;
+			socket.emit('update', user);
+		}
+
+
+  	</script>
+    <title> hai spas</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+	<form action="">
+	  First name:<br>
+	  <input type="text" id="username" name="username" value="pesho">
+	  <br>
+	  <input type="button" value="Submit" onclick="t()" >
+	</form>
+  </body>
+</html>

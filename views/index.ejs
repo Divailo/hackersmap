@@ -1,90 +1,85 @@
-<!DOCTYPE html>
-<html>
-  <head>
-  	<script src="/socket.io/socket.io.js"></script>
-  	<script src="//code.jquery.com/jquery-3.1.1.js"></script>
-  	<script type="text/javascript">
+<!doctype html>
+<html ng-app="HackersMapApp">
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta name="HandheldFriendly" content="true" />
 
-  		var username;
+    <title>Hacker's Map!</title>
 
-  		var socket;
-  		var user;
-  		var pos;
-
-
-  			//da pra6ta6
-		// socket.emit('login', user) -> user = json of name, lat, lon; kogato si klient i wliza6 w servera
-		// socket.emit('send_new_message', jsonMsg) -> jsonMsg = json of name, content; kogato si klient i pra6ta6 msg
-		// socket.emit('update', user) -> user = json of name, lat, lon; update na location-a, de fakto sy6toto kato login :S
-
-			//da polu4awa6
-		//socke.on('loggedIn', users) -> users = array of users with nicknames/coordinates; nqkoi e wleznal w server-a
-		//socket.on('new_message_received', messsage > message = json of name, content; kogato nqkoi izprati syob6tenie
-
-
-  		function t(){
-
-  			socket = io();
-	  		socket.on('loggedIn', function (currentUsersArray){
-
-	  			console.log(currentUsersArray);
-	  			// DO 
-	  		})
-
-	  		//when the client receives event of a new message
-	  		socket.on('new_message_received', function(newMessage){
-
-	  			console.log('new message received');
-	  			//display somewhere
-
-	  		})
-  			
-  			navigator.geolocation.getCurrentPosition(showPosition);
-  		}
-
-		function showPosition(position){
-			console.log(position.coords.latitude + " " + position.coords.longitude);
-			lat = position.coords.latitude;
-			lon = position.coords.longitude;
-
-			user = { username:$('#username').val(),
-			 		 latitude:lat,
-			 		 longitude:lon
-			 		}
-
-			socket.emit('login', user);
-			username = user.username;
-  			setInterval(updatePos, 1000);
-			
-		}
-
-		function updatePos(){
-
-			navigator.geolocation.getCurrentPosition(showPosition1);
+    <!-- Generic Imports -->
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Ubuntu:300,400' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <!-- Custom Imports -->
+    <link rel="stylesheet" href="styles/mainStyle.css">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/cssReset.css">
+    <link rel="stylesheet" href="styles/ask.css">
+    <link rel="stylesheet" href="styles/style.css">
+    <!-- GIS imports -->
+    <link rel="stylesheet" href="https://js.arcgis.com/4.1/esri/css/main.css">
+    <script src="https://js.arcgis.com/4.1/"></script>
+</head>
+<body>
+<div class="container-fluid topBorder"></div>
+<div id="bodyContainer" class="container-fluid">
+    <div class="container">
+        <header id="bodyHeader" class="navbar navbar-static-top">
+            <div id="logo" class="navbar-brand">
+                <a href="#/" class="transitionFast">Hacker's Map</a>
+            </div> 
+            <button id="navToggle" class="navbar-toggle" data-toggle="collapse" data-target=".navHeaderCollapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>  
+            </button>
+            <div class="collapse navbar-collapse navHeaderCollapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#/about"><button>About</button></a>
+                    </li>
+                    <li>
+                        <a href="#/login"><button>Login</button></a>
+                    </li>
+                    <li>
+                        <a href="#/event/1"><button>Event</button></a>
+                    </li>
+                </ul>
+            </div>
+        </header>
+    </div>
+    <div id="mainContent" class="container">
+        <div ng-view>
+        </div>
+    </div>
+    <div class="container mainFooter">
+        No rights reserved
+    </div>
+</div>
 
 
 
-		}
-
-		function showPosition1(position){
-			user.latitude = position.coords.latitude;
-			user.longitude = position.coords.longitude;
-			socket.emit('update', user);
-		}
 
 
-  	</script>
-    <title> hai spas</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-	<form action="">
-	  First name:<br>
-	  <input type="text" id="username" name="username" value="pesho">
-	  <br>
-	  <input type="button" value="Submit" onclick="t()" >
-	</form>
-  </body>
+
+
+
+	<!-- SCRIPTS AND OTHER STUFF -->
+    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+    <script src="https://code.angularjs.org/1.3.8/angular.js"></script>
+    <script src="https://code.angularjs.org/1.3.8/angular-route.js"></script>
+    <script src="https://code.angularjs.org/1.3.8/angular-resource.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.14/angular-animate.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+    <script src="app/app.js"></script>
+    <script src="app/map.js"></script>
+    <script src="app/requests.js"></script>
+    <script src="app/controllers/LoginController.js"></script>
+    <script src="app/controllers/RegisterController.js"></script>
+    <script src="app/controllers/EventMapController.js"></script>
+    <script src="app/controllers/AboutController.js"></script>
+	
+</body>
 </html>

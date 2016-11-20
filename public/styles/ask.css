@@ -1,0 +1,96 @@
+form {
+	margin: 20px 0;
+}
+.formSection {
+	width: 100%;
+	display: block;
+	margin: 0 0 14px 0;
+	vertical-align: middle;
+}
+
+.formSection label{
+	height: 28px;
+	font-family: 'Ubuntu', sans-serif;
+	font-weight: 400;
+	font-size: 16px;
+	background: #1976D2;
+	vertical-align: middle;
+	float: left;
+	line-height: 28px;
+	padding: 0 10px;
+	color: #ffffff;
+}
+
+.formSection input[type="text"], .formSection select {
+	max-width: 100%;
+	width: 300px;
+	height: 40px;
+	border: 1px solid #ffffff;
+	outline: none;
+	padding: 0 35px 0 10px;
+	vertical-align: middle;
+	background: none;
+	color: #fff;
+	font-size: 1.4em;
+}
+
+.formSection select {
+	color: #888 !important;
+}
+
+.formSection textarea {
+	max-width: 100%;
+	width: 100%;
+	height: 80px;
+	border: 1px solid #1976D2;
+	outline: none;
+	padding: 10px;
+	vertical-align: middle;
+}
+
+.addAnswerButton {
+	height: 34px;
+	font-size: 22px;
+	padding: 0 10px 0 34px;
+	position: relative;
+}
+.addAnswerButton span:first-child {
+	height: 34px;
+	width: 34px;
+	display: inline-block;
+	font-size: 24px;
+	position: absolute;
+	left: 0;
+	line-height: 30px;
+}
+.addAnswerButton span:nth-child(2) {
+	height: 34px;
+	display: inline-block;
+	font-size: 14px;
+	line-height: 34px;
+}
+
+.removeAnswerButton {
+	width: 40px;
+	height: 40px;
+	display: inline-block;
+	vertical-align: middle;
+	padding: 0;
+	margin: 0 0 0 -40px;
+	outline: none;
+}
+.removeAnswerButton span{
+	width: 16px;
+	height: 3px;
+	display: block;
+	margin: 0 auto;
+	background: #1976D2;
+}
+.removeAnswerButton:hover span{
+	background: #ffffff;
+}
+
+.example {
+	font-size: 13px;
+	color: #777;
+}

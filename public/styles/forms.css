@@ -1,0 +1,71 @@
+.checkboxRemove, .radioRemove {
+	display: none;
+	position: absolute;
+	margin: 9999px 9999px 0 0;
+}
+
+.checkboxLabel {
+	width: 30px !important;
+	height: 30px !important;
+	padding: 0 !important;
+	margin: 0;
+	background: #ffffff !important;
+	border: 1px solid #1976D2 !important;
+	line-height: 30px;
+}
+
+.checkboxLabel div {
+	width: 14px;
+	height: 14px;
+	background: #1976D2;
+	margin: 7px auto 0;
+	display: none;
+}
+
+.checkboxRemove:checked ~ .checkboxLabel div{
+	display: block;
+}
+
+.labelLike {
+	height: 30px;
+	line-height: 30px;
+	margin: 0 10px 0 5px;
+	color: #212121;
+	vertical-align: middle;
+}
+.labelLike + span {
+	width: 16px;
+	height: 16px;
+	background: #1976D2;
+	display: inline-block;
+	border-radius: 16px;
+	text-align: center;
+	vertical-align: middle;
+	line-height: 16px;
+	color: #ffffff;
+	font-size: 12px;
+}
+
+.radioLabel {
+	width: 30px !important;
+	height: 30px !important;
+	padding: 0 !important;
+	margin: 0;
+	background: #ffffff !important;
+	border: 1px solid #1976D2 !important;
+	line-height: 30px;
+	border-radius: 30px;
+}
+
+.radioLabel div {
+	width: 14px;
+	height: 14px;
+	background: #1976D2;
+	margin: 7px auto 0;
+	display: none;
+	border-radius: 14px;
+}
+
+.radioRemove:checked ~ .radioLabel div{
+	display: block;
+}
