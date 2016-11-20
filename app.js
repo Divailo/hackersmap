@@ -79,7 +79,7 @@ io.on('connect', function(socket){
 	})
 
 	//disconnect handler
-	socket.on('disconnect', function(){
+	socket.on('disconnect', function(message){
     	console.log('user disconnected');
 	})
 })
