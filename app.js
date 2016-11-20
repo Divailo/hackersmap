@@ -39,6 +39,8 @@ app.use('/users', users);
 
 var currentUsersArray = [];
 
+var messageHistory = [];
+
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
@@ -51,7 +53,7 @@ app.use(function(err, req, res, next) {
 });
 
 
-io.on('connect', function(socket){ 
+io.on('connect', function(socket){
 	socket.on('login', function(message){
 		checkForDuplicates(message)
 		io.emit('loggedIn', currentUsersArray)
@@ -67,6 +69,18 @@ io.on('connect', function(socket){
 		}
 
 		console.log(message.latitude+ " "+ message.longitude+" for " + message.username)
+	})
+
+	//new chat message
+	socket.on('send_new_message', function(message){
+		console.log('client sent a message');
+		messageHistory.push(message);
+		io.emit('new_message_received', message);
+	})
+
+	//disconnect handler
+	socket.on('disconnect', function(){
+    	console.log('user disconnected');
 	})
 })
 
