@@ -2,13 +2,22 @@
 var oxfordPosition = [];
 var socket;
 
-var _username = "Damyan";
+var _username = "Damyan"+ Math.random();
 var user;
 var pos;
+
+var view;
+var map;
+var currentPoint;
+var others = [];
+var pointGraphic;
+var markerSymbol;
+var markerSymbol2;
 
 $( document ).ready(function() {
   getLocation();
   initSocket();
+  initMap();
 
   // Emit the current position
   user = { username:_username,
@@ -19,21 +28,20 @@ $( document ).ready(function() {
   socket.emit('login', user);
   _username = user.username;
   setInterval(function() {
-    socket.emit('update', { username:_username,
-           latitude:oxfordPosition[1],
-           longitude:oxfordPosition[0]
-          })
+     socket.emit('update', { username:_username,
+       latitude:oxfordPosition[1],
+       longitude:oxfordPosition[0]
+      });
   }, 1000);
 
-  initMap();
 });
 
 // Initiate the socket
 function initSocket(){
   socket = io();
   socket.on('loggedIn', function (currentUsersArray){
-    console.log(currentUsersArray);
-    // DO 
+    console.log(currentUsersArray); 
+    drawPoints(currentUsersArray);
   })
 
   //when the client receives event of a new message
@@ -63,10 +71,11 @@ function initMap() {
 
 
     // Init map and view
-    var map = new Map({
+    map = new Map({
       basemap: "nothing"
     });
-    var view = new MapView({
+
+    view = new MapView({
       container: "viewDiv",  // Reference to the scene div created in step 5
       map: map,  // Reference to the map object created before the scene
       zoom: 20,  // Sets the zoom level based on level of detail (LOD)
@@ -74,33 +83,67 @@ function initMap() {
     });
 
     // Draw position of ourselves
-    var point = new Point({
+    currentPoint = new Point({
       longitude: oxfordPosition[0],
       latitude:  oxfordPosition[1]
     });
 
     // Style for markering
-    var markerSymbol = new SimpleMarkerSymbol({
+    markerSymbol = new SimpleMarkerSymbol({
       color: [226, 239, 10],
       outline: { 
         color: [0, 0, 0],
         width: 1
       }
     });
+    markerSymbol2 = new SimpleMarkerSymbol({
+      color: [100, 239, 50],
+      outline: { 
+        color: [0, 0, 0],
+        width: 1
+      }});
 
-    var pointGraphic = new Graphic({
-      geometry: point,
+    pointGraphic = new Graphic({
+      geometry: currentPoint,
       symbol: markerSymbol
     });
 
-    view.graphics.addMany([pointGraphic, point]);
-
+    view.graphics.addMany([pointGraphic, currentPoint]);
     // Map thingy
     var featureLayer = new FeatureLayer({
       url: "http://services.arcgis.com/Qo2anKIAMzIEkIJB/arcgis/rest/services/OxfordHackCampusDraft1/FeatureServer/0"
     });
 
     map.add(featureLayer);
+  });
+}
+
+
+function drawPoints(points) {
+  
+  require([
+      "esri/geometry/Point",
+      "esri/Graphic",
+      "dojo/domReady!"
+    ], function(Point,Graphic){
+
+    for (var i = 0; i < points.length; i = i+1) {
+      console.log("looping all day long")
+      if(points[i].username === _username){}
+      else{
+        var newPoint = new Point({
+        longitude: points[i].longitude ,
+        latitude:  points[i].latitude
+      });
+        pointGraphic = new Graphic({
+          geometry: newPoint,
+          symbol: markerSymbol2
+        });
+        console.log(pointGraphic)
+        view.graphics.addMany([pointGraphic, newPoint]); }
+      }
+    
+
   });
 }
 
