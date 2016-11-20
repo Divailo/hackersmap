@@ -5,7 +5,8 @@
   	<script src="//code.jquery.com/jquery-3.1.1.js"></script>
   	<script type="text/javascript">
 
-  		// var username;
+  		var username;
+
   		var socket;
   		var user;
   		var pos;
@@ -23,17 +24,17 @@
 
   		function t(){
 
-  			socket = io()
+  			socket = io();
 	  		socket.on('loggedIn', function (currentUsersArray){
 
-	  			console.log(currentUsersArray)
+	  			console.log(currentUsersArray);
 	  			// DO 
 	  		})
 
 	  		//when the client receives event of a new message
 	  		socket.on('new_message_received', function(newMessage){
 
-	  			console.log('new message received')
+	  			console.log('new message received');
 	  			//display somewhere
 
 	  		})
@@ -42,29 +43,33 @@
   		}
 
 		function showPosition(position){
-			console.log(position.coords.latitude + " " + position.coords.longitude)
-			lat = position.coords.latitude
-			lon = position.coords.longitude
+			console.log(position.coords.latitude + " " + position.coords.longitude);
+			lat = position.coords.latitude;
+			lon = position.coords.longitude;
+
 			user = { username:$('#username').val(),
 			 		 latitude:lat,
-			 		 longitude:lon }
-			socket.emit('login', user)
-  			setInterval(updatePos, 1000)
+			 		 longitude:lon
+			 		}
+
+			socket.emit('login', user);
+			username = user.username;
+  			setInterval(updatePos, 1000);
 			
 		}
 
 		function updatePos(){
 
-			navigator.geolocation.getCurrentPosition(showPosition1)
+			navigator.geolocation.getCurrentPosition(showPosition1);
 
 
 
 		}
 
 		function showPosition1(position){
-			user.latitude = position.coords.latitude
-			user.longitude = position.coords.longitude
-			socket.emit('update', user)
+			user.latitude = position.coords.latitude;
+			user.longitude = position.coords.longitude;
+			socket.emit('update', user);
 		}
 
 
